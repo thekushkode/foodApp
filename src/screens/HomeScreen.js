@@ -1,10 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     return (
-        <View>
-            <Text>Home Screen</Text>
+        <View style={{ flex: 1 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+                <Image
+                    source={require('../../assets/food.jpg')}
+                    onLoad={() => {
+                        setTimeout(() => {
+                            navigation.navigate('Search')
+                        }, 5000);
+                    }}
+                />
+            </TouchableOpacity>
         </View>
     )
 };
@@ -13,4 +23,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default HomeScreen;
+export default withNavigation(HomeScreen);
